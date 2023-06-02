@@ -170,7 +170,99 @@ public class SunMiPrinter extends CordovaPlugin {
 
 
 
-    	}else if(action.equals("init")){
+    	}else if (action.equals("print2")){
+            SunmiHelper sunmiHelper = SunmiHelper.getInstance();
+            try{
+                sunmiHelper.beginTransaction();
+                for(int i = 0; i < data.length(); i++){
+                    JSONObject object = data.getJSONObject(i);
+                    sunmiHelper.printNewline(1);
+                    String printLeft =  object.getString("printLeft");
+                    String printRight =  object.getString("printRight");
+					sunmiHelper.setAlignment(0);
+                    sunmiHelper.printText(printLeft);
+					sunmiHelper.setAlignment(2);
+                    sunmiHelper.printText(printRight);
+
+                    sunmiHelper.printNewline(0);
+
+                }
+
+                sunmiHelper.endTransaction(new InnerResultCallbcak() {
+                    @Override
+                    public void onRunResult(boolean isSuccess) throws RemoteException {
+
+                    }
+
+                    @Override
+                    public void onReturnString(String result) throws RemoteException {
+
+                    }
+
+                    @Override
+                    public void onRaiseException(int code, String msg) throws RemoteException {
+                        Exception e = new Exception("onPrintResult code: " + code + " msg: " + msg);
+                    }
+
+                    @Override
+                    public void onPrintResult(int code, String msg) throws RemoteException {
+                        SunmiHelper sunmiHelper = SunmiHelper.getInstance();
+                        int printStatus = Integer.MAX_VALUE;
+                        RemoteException myException = null;
+
+                        try {
+                            // wait interface
+                            do {
+                                printStatus = sunmiHelper.getPrinterStatus();
+                            } while (code == 1 && printStatus == SunmiHelper.STATUS_OK);
+
+                            switch (printStatus){
+                                case SunmiHelper.STATUS_OK:
+                                    Log.e(TAG, "OK");
+                                    callbackContext.success("done");
+                                    return;
+                                case SunmiHelper.STATUS_UPDATE:
+                                    myException = new RemoteException("printer found but still initializing");
+                                    break;
+                                case SunmiHelper.STATUS_EXCEPTION:
+                                    myException = new RemoteException("printer hardware interface is abnormal and needs to be reprinted");
+                                    break;
+                                case SunmiHelper.OUT_OF_PAPER:
+                                    myException = new RemoteException("printer is out of paper");
+                                    break;
+                                case SunmiHelper.OVERHEATING:
+                                    myException = new RemoteException("printer is overheating");
+                                    break;
+                                case SunmiHelper.COVER_OPEN:
+                                    myException = new RemoteException("printer's cover is not closed");
+                                    break;
+                                case SunmiHelper.NO_BLACK_MARK:
+                                    myException = new RemoteException("not found black mark paper");
+                                    break;
+                                case SunmiHelper.PRINTER_NOT_EXISTS:
+                                    myException = new RemoteException("printer does not exist");
+                                    break;
+                                default:
+                                    myException = new RemoteException("unknown exception");
+                                    break;
+                            }
+                        }catch (Exception statusExecption){
+                            myException = new RemoteException(statusExecption.getMessage());
+                        }
+                        callbackContext.error(myException.getMessage());
+
+                    }
+                });
+            }catch (Exception e){
+                e.printStackTrace();
+                callbackContext.error(e.getMessage());
+                return true;
+            }
+            return true;
+
+
+
+        }else if(action.equals("init")){
     		SunmiHelper.getInstance().initSunmiPrinterService(cordova.getActivity());
     		callbackContext.success("initialized");
             return true;

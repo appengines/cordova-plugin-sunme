@@ -245,7 +245,7 @@ public class SunmiHelper {
         if(sunmiPrinterService == null){
             throw new Exception(); //TODO handle exceptions.
         }
-
+//alignment → alignment mode: 0 → left, 1 -> center, 2 -> right
         sunmiPrinterService.setAlignment(val, null);
     }
 
