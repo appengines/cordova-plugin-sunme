@@ -179,8 +179,8 @@ public class SunMiPrinter extends CordovaPlugin {
                     sunmiHelper.printNewline(1);
                     String printLeft =  object.getString("printLeft");
                     String printRight =  object.getString("printRight");
-                    String widthLeft =  object.getString("widthLeft");
-                    String widthRight =  object.getString("widthRight");
+                    int widthLeft =  object.getString("widthLeft");
+                    int widthRight =  object.getString("widthRight");
 //					sunmiHelper.setAlignment(0);
 //                    sunmiHelper.printText(printLeft);
 //					sunmiHelper.setAlignment(2);
