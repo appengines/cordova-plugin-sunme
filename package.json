@@ -1,0 +1,32 @@
+{
+  "name": "cordova-plugin-sunmi",
+  "version": "1.0.7",
+  "description": "A sample for a new cordova plugin to detect dark/inversion color mode",
+  "cordova": {
+    "id": "cordova-plugin-sunmi",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openmove/cordova-sunmi-plugin.git"
+  },
+  "keywords": [
+    "cordova",
+    "plugin",
+    "sunmi",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "OpenMove team",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/openmove/cordova-darkmode-sunmi"
+  },
+  "homepage": "https://openmove.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
