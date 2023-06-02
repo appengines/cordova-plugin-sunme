@@ -7,5 +7,8 @@ module.exports = {
     },
     deinit: function (params, successCallback, errorCallback) {
         cordova.exec(successCallback, errorCallback, "SunmiPrinter", "deinit", []);
+    },
+    ping: function (){
+        console.warn("PONG!");
     }
 };
