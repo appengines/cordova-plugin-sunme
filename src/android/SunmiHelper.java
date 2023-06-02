@@ -215,6 +215,14 @@ public class SunmiHelper {
         // 0 right, 1 center, 2 left
         sunmiPrinterService.printText(text + "\n", null);
     }
+    public void printRow(String text, String text2) throws Exception {
+        if(sunmiPrinterService == null){
+            throw new Exception(); //TODO handle exceptions.
+        }
+
+        // 0 right, 1 center, 2 left
+        sunmiPrinterService.printColumnsText(new String[]{text,text2}, new int[]{4,1}, new int[]{0,2},null);
+    }
 
     public void printTextWithFont(String text, int size, boolean isBold) throws Exception {
         if(sunmiPrinterService == null){
