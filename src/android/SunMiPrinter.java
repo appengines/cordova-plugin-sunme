@@ -1,4 +1,4 @@
-package com.openmove.sunmi;
+package com.mobileappengines.sunmi;
 
 import org.apache.cordova.*;
 import org.json.JSONArray;
@@ -9,7 +9,7 @@ import android.util.Log;
 import android.content.res.Configuration;
 import android.provider.Settings;
 
-import com.openmove.sunmi.SunmiHelper;
+import com.mobileappengines.sunmi.SunmiHelper;
 import com.sunmi.peripheral.printer.InnerResultCallbcak;
 
 import android.content.Context;

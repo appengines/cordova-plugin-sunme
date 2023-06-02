@@ -1,4 +1,4 @@
-package com.openmove.sunmi;
+package com.mobileappengines.sunmi;
 
 public interface CallBack {
     public void onSuccess();

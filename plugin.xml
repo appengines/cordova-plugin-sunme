@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-        id="cordova-plugin-sunmi"
+        id="cordova-plugin-sunme"
         version="1.0.7">
   <name>SunmiPrinter</name>
   <engines>
@@ -14,14 +14,14 @@
 	<framework src="com.sunmi:printerlibrary:1.0.7" />
 	<config-file target="res/xml/config.xml" parent="/*">
 	      <feature name="SunmiPrinter">
-		        <param name="android-package" value="com.openmove.sunmi.SunMiPrinter"/>
+		        <param name="android-package" value="com.mobileappengines.sunmi.SunMiPrinter"/>
 	      </feature>
 	    </config-file>
-	 <source-file src="src/android/SunMiPrinter.java" target-dir="src/com/openmove/sunmi/" />
-     <source-file src="src/android/SunmiHelper.java" target-dir="src/com/openmove/sunmi/" />
-     <source-file src="src/android/CallBack.java" target-dir="src/com/openmove/sunmi/" />
-     <source-file src="src/android/BitmapHelper.java" target-dir="src/com/openmove/sunmi/" />
-     <source-file src="src/android/BytesUtil.java" target-dir="src/com/openmove/sunmi/" />
-     <source-file src="src/android/ESCUtil.java" target-dir="src/com/openmove/sunmi/" />
+	 <source-file src="src/android/SunMiPrinter.java" target-dir="src/com/mobileappengines/sunmi/" />
+     <source-file src="src/android/SunmiHelper.java" target-dir="src/com/mobileappengines/sunmi/" />
+     <source-file src="src/android/CallBack.java" target-dir="src/com/mobileappengines/sunmi/" />
+     <source-file src="src/android/BitmapHelper.java" target-dir="src/com/mobileappengines/sunmi/" />
+     <source-file src="src/android/BytesUtil.java" target-dir="src/com/mobileappengines/sunmi/" />
+     <source-file src="src/android/ESCUtil.java" target-dir="src/com/mobileappengines/sunmi/" />
   </platform>
 </plugin>

@@ -1,12 +1,12 @@
-package com.openmove.sunmi;
+package com.mobileappengines.sunmi;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.openmove.sunmi.CallBack;
-import com.openmove.sunmi.ESCUtil;
+import com.mobileappengines.sunmi.CallBack;
+import com.mobileappengines.sunmi.ESCUtil;
 import com.sunmi.peripheral.printer.ExceptionConst;
 import com.sunmi.peripheral.printer.InnerPrinterCallback;
 import com.sunmi.peripheral.printer.InnerPrinterException;

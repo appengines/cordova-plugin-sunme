@@ -1,4 +1,4 @@
-package com.openmove.sunmi;
+package com.mobileappengines.sunmi;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
