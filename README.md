@@ -10,5 +10,7 @@ FORKED from defunct project: https://www.npmjs.com/package/cordova-plugin-sunmi/
 ### Install
 ```
 cordova plugin add cordova-plugin-sunmi
+<plugin name="cordova-plugin-sunme" spec="https://github.com/appengines/cordova-plugin-sunme.git" />
+
 ```
 
