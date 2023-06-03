@@ -171,16 +171,24 @@ public class SunMiPrinter extends CordovaPlugin {
 
 
     	}else if (action.equals("printRow")){
+			//init every time?
+    		SunmiHelper.getInstance().initSunmiPrinterService(cordova.getActivity());
+
             SunmiHelper sunmiHelper = SunmiHelper.getInstance();
+			//Alignment: 0: left; 1: center; 2: right.
             try{
                 sunmiHelper.beginTransaction();
+
+				//Currency header top right:
+				sunmiHelper.printRow("","","GBP",2,7,3);
+
+				//Items ordered:
                 for(int i = 0; i < data.length(); i++){
                     JSONObject object = data.getJSONObject(i);
-                    sunmiHelper.printNewline(1);
-                    String quantString =  object.optString("quant","0");
+                    String quantString =  object.optString("quant","");
 //                    String itemString =  object.optString("item","-");
                     String itemString =  object.getString("item");
-                    String priceString =  object.optString("price","0");
+                    String priceString =  object.optString("price","");
                     int width1 =  object.optInt("width1",2);
                     int width2 =  object.optInt("width2",7);
                     int width3 =  object.optInt("width3",3);
@@ -189,10 +197,12 @@ public class SunMiPrinter extends CordovaPlugin {
 //					sunmiHelper.setAlignment(2);
 //                    sunmiHelper.printText(printRight);
                     sunmiHelper.printRow(quantString,itemString,priceString,width1,width2,width3);
-
-                    sunmiHelper.printNewline(2);
-
+                    sunmiHelper.printNewline(1);
                 }
+				sunmiHelper.setAlignment(1);
+				sunmiHelper.printText("---------------------------------");
+				sunmiHelper.setAlignment(0);
+				sunmiHelper.printNewline(2);
 
                 sunmiHelper.endTransaction(new InnerResultCallbcak() {
                     @Override
@@ -265,8 +275,6 @@ public class SunMiPrinter extends CordovaPlugin {
                 return true;
             }
             return true;
-
-
 
         }else if(action.equals("init")){
     		SunmiHelper.getInstance().initSunmiPrinterService(cordova.getActivity());
