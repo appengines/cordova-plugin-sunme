@@ -170,22 +170,25 @@ public class SunMiPrinter extends CordovaPlugin {
 
 
 
-    	}else if (action.equals("print2")){
+    	}else if (action.equals("printRow")){
             SunmiHelper sunmiHelper = SunmiHelper.getInstance();
             try{
                 sunmiHelper.beginTransaction();
                 for(int i = 0; i < data.length(); i++){
                     JSONObject object = data.getJSONObject(i);
                     sunmiHelper.printNewline(1);
-                    String printLeft =  object.getString("printLeft");
-                    String printRight =  object.getString("printRight");
-                    int widthLeft =  object.getInt("widthLeft");
-                    int widthRight =  object.getInt("widthRight");
+                    String quantString =  object.OptString("quant","0");
+//                    String itemString =  object.OptString("item","-");
+                    String itemString =  object.GetString("item");
+                    String priceString =  object.OptString("price","0");
+                    int width1 =  object.optInt("width1",2);
+                    int width2 =  object.optInt("width2",7);
+                    int width3 =  object.optInt("width3",3);
 //					sunmiHelper.setAlignment(0);
 //                    sunmiHelper.printText(printLeft);
 //					sunmiHelper.setAlignment(2);
 //                    sunmiHelper.printText(printRight);
-                    sunmiHelper.printRow(printLeft,printRight,widthLeft,widthRight);
+                    sunmiHelper.printRow(quantString,itemString,priceString,width1,width2,width3);
 
                     sunmiHelper.printNewline(2);
 

@@ -215,13 +215,13 @@ public class SunmiHelper {
         // 0 right, 1 center, 2 left
         sunmiPrinterService.printText(text + "\n", null);
     }
-    public void printRow(String textL, String textR, int widthL, int widthR) throws Exception {
+    public void printRow(String quantString, String itemString, String priceString, int width1, int width2, int width3) throws Exception {
         if(sunmiPrinterService == null){
             throw new Exception(); //TODO handle exceptions.
         }
 
-        // 0 right, 1 center, 2 left
-        sunmiPrinterService.printColumnsString(new String[]{textL,textR}, new int[]{widthL,widthR}, new int[]{0,2},null);
+		//: 0: left; 1: center; 2: right.
+        sunmiPrinterService.printColumnsString(new String[]{quantString,itemString,priceString}, new int[]{width1,width2,width3}, new int[]{0,0,2},null);
     }
 
     public void printTextWithFont(String text, int size, boolean isBold) throws Exception {

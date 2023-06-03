@@ -2,8 +2,8 @@ module.exports = {
     print: function (params, successCallback, errorCallback) {
         cordova.exec(successCallback, errorCallback, "SunmiPrinter", "print", params);
     },
-    print2: function (params, successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "SunmiPrinter", "print2", params);
+    printRow: function (params, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "SunmiPrinter", "printRow", params);
     },
     init: function (params, successCallback, errorCallback) {
         cordova.exec(successCallback, errorCallback, "SunmiPrinter", "init", []);
