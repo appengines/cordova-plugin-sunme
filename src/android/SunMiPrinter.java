@@ -24,7 +24,7 @@ public class SunMiPrinter extends CordovaPlugin {
     String TAG = "SunMiPrinter";
 
     @Override
-    public boolean execute(String action, JSONObject data, CallbackContext callbackContext){
+    public boolean execute(String action, JSONArray data, CallbackContext callbackContext){
         Log.e(TAG, action);
         if (action.equals("print")){
             SunmiHelper sunmiHelper = SunmiHelper.getInstance();
@@ -179,15 +179,16 @@ public class SunMiPrinter extends CordovaPlugin {
             try{
                 sunmiHelper.beginTransaction();
 
+				JSONObject first = data.getJSONObject(0);
 
-				if(data.has("title")){
-					String title = data.getString("title");
+				if(first.has("title")){
+					String title = first.getString("title");
                     sunmiHelper.setAlignment(1);
 					sunmiHelper.printTextWithFont(title, 32, true);
 					sunmiHelper.printNewline(0);
 				}
 
-				JsonArray itemsArray = data.optJsonArray("items");
+				JsonArray itemsArray = first.optJsonArray("items");
 
 				if (itemsArray != null) {
 
