@@ -188,7 +188,7 @@ public class SunMiPrinter extends CordovaPlugin {
 					sunmiHelper.printNewline(0);
 				}
 
-				JsonArray itemsArray = first.optJsonArray("items");
+				JSONArray itemsArray = first.optJsonArray("items");
 
 				if (itemsArray != null) {
 
