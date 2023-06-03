@@ -177,10 +177,10 @@ public class SunMiPrinter extends CordovaPlugin {
                 for(int i = 0; i < data.length(); i++){
                     JSONObject object = data.getJSONObject(i);
                     sunmiHelper.printNewline(1);
-                    String quantString =  object.OptString("quant","0");
-//                    String itemString =  object.OptString("item","-");
-                    String itemString =  object.GetString("item");
-                    String priceString =  object.OptString("price","0");
+                    String quantString =  object.optString("quant","0");
+//                    String itemString =  object.optString("item","-");
+                    String itemString =  object.getString("item");
+                    String priceString =  object.optString("price","0");
                     int width1 =  object.optInt("width1",2);
                     int width2 =  object.optInt("width2",7);
                     int width3 =  object.optInt("width3",3);
