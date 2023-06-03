@@ -197,7 +197,7 @@ public class SunMiPrinter extends CordovaPlugin {
 //					sunmiHelper.setAlignment(2);
 //                    sunmiHelper.printText(printRight);
                     sunmiHelper.printRow(quantString,itemString,priceString,width1,width2,width3);
-                    sunmiHelper.printNewline(1);
+//                    sunmiHelper.printNewline(1);
                 }
 				sunmiHelper.setAlignment(1);
 				sunmiHelper.printText("---------------------------------");
