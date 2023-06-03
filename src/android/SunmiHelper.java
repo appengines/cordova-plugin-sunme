@@ -223,6 +223,14 @@ public class SunmiHelper {
 		//: 0: left; 1: center; 2: right.
         sunmiPrinterService.printColumnsString(new String[]{quantString,itemString,priceString}, new int[]{width1,width2,width3}, new int[]{0,0,2},null);
     }
+    public void printRow2(String itemString, String priceString, int width1, int width2) throws Exception {
+        if(sunmiPrinterService == null){
+            throw new Exception(); //TODO handle exceptions.
+        }
+
+		//: 0: left; 1: center; 2: right.
+        sunmiPrinterService.printColumnsString(new String[]{itemString,priceString}, new int[]{width1,width2}, new int[]{0,2},null);
+    }
 
     public void printTextWithFont(String text, int size, boolean isBold) throws Exception {
         if(sunmiPrinterService == null){

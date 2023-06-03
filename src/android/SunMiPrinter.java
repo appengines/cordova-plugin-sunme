@@ -188,12 +188,18 @@ public class SunMiPrinter extends CordovaPlugin {
 					sunmiHelper.printNewline(0);
 				}
 
-				JSONArray itemsArray = first.optJSONArray("items");
+				if(first.has("subtitle")){
+					String subtitle = first.getString("subtitle");
+                    sunmiHelper.setAlignment(1);
+					sunmiHelper.printTextWithFont(subtitle, 24, true);
+					sunmiHelper.printNewline(0);
+				}
 
+				JSONArray itemsArray = first.optJSONArray("items");
 				if (itemsArray != null) {
 
 					sunmiHelper.setAlignment(1);
-					sunmiHelper.printText("---------------------------------");
+					sunmiHelper.printText("------------------------------");
 					sunmiHelper.setAlignment(0);
 
 					//Currency header top right:
@@ -217,7 +223,24 @@ public class SunMiPrinter extends CordovaPlugin {
 	//                    sunmiHelper.printNewline(1);
 	                }
 					sunmiHelper.setAlignment(1);
-					sunmiHelper.printText("---------------------------------");
+					sunmiHelper.printText("------------------------------");
+					sunmiHelper.setAlignment(0);
+	
+				}
+				JSONArray totalsArray = first.optJSONArray("totals");
+				if (totalsArray != null) {
+
+					//Totals lines
+	                for(int i = 0; i < totalsArray.length(); i++){
+	                    JSONObject object = totalsArray.getJSONObject(i);
+	                    String itemString =  object.getString("item");
+	                    String priceString =  object.optString("price","");
+	                    int width1 =  object.optInt("width1",7);
+	                    int width2 =  object.optInt("width2",2);
+	                    sunmiHelper.printRow2(itemString,priceString,width1,width2);
+	                }
+					sunmiHelper.setAlignment(1);
+					sunmiHelper.printText("------------------------------");
 					sunmiHelper.setAlignment(0);
 	
 				}
