@@ -24,7 +24,7 @@ public class SunMiPrinter extends CordovaPlugin {
     String TAG = "SunMiPrinter";
 
     @Override
-    public boolean execute(String action, JSONArray data, CallbackContext callbackContext){
+    public boolean execute(String action, JSONObject data, CallbackContext callbackContext){
         Log.e(TAG, action);
         if (action.equals("print")){
             SunmiHelper sunmiHelper = SunmiHelper.getInstance();
@@ -179,29 +179,47 @@ public class SunMiPrinter extends CordovaPlugin {
             try{
                 sunmiHelper.beginTransaction();
 
-				//Currency header top right:
-				sunmiHelper.printRow("","","GBP",2,7,3);
 
-				//Items ordered:
-                for(int i = 0; i < data.length(); i++){
-                    JSONObject object = data.getJSONObject(i);
-                    String quantString =  object.optString("quant","");
-//                    String itemString =  object.optString("item","-");
-                    String itemString =  object.getString("item");
-                    String priceString =  object.optString("price","");
-                    int width1 =  object.optInt("width1",2);
-                    int width2 =  object.optInt("width2",7);
-                    int width3 =  object.optInt("width3",3);
-//					sunmiHelper.setAlignment(0);
-//                    sunmiHelper.printText(printLeft);
-//					sunmiHelper.setAlignment(2);
-//                    sunmiHelper.printText(printRight);
-                    sunmiHelper.printRow(quantString,itemString,priceString,width1,width2,width3);
-//                    sunmiHelper.printNewline(1);
-                }
-				sunmiHelper.setAlignment(1);
-				sunmiHelper.printText("---------------------------------");
-				sunmiHelper.setAlignment(0);
+				if(data.has("title")){
+					String title = data.getString("title");
+                    sunmiHelper.setAlignment(1);
+					sunmiHelper.printTextWithFont(title, 32, true);
+					sunmiHelper.printNewline(0);
+				}
+
+				JsonArray itemsArray = data.optJsonArray("items");
+
+				if (itemsArray != null) {
+
+					sunmiHelper.setAlignment(1);
+					sunmiHelper.printText("---------------------------------");
+					sunmiHelper.setAlignment(0);
+
+					//Currency header top right:
+					sunmiHelper.printRow("","","GBP",1,7,2);
+	
+					//Items ordered:
+	                for(int i = 0; i < itemsArray.length(); i++){
+	                    JSONObject object = itemsArray.getJSONObject(i);
+	                    String quantString =  object.optString("quant","");
+	//                    String itemString =  object.optString("item","-");
+	                    String itemString =  object.getString("item");
+	                    String priceString =  object.optString("price","");
+	                    int width1 =  object.optInt("width1",1);
+	                    int width2 =  object.optInt("width2",7);
+	                    int width3 =  object.optInt("width3",2);
+	//					sunmiHelper.setAlignment(0);
+	//                    sunmiHelper.printText(printLeft);
+	//					sunmiHelper.setAlignment(2);
+	//                    sunmiHelper.printText(printRight);
+	                    sunmiHelper.printRow(quantString,itemString,priceString,width1,width2,width3);
+	//                    sunmiHelper.printNewline(1);
+	                }
+					sunmiHelper.setAlignment(1);
+					sunmiHelper.printText("---------------------------------");
+					sunmiHelper.setAlignment(0);
+	
+				}
 				sunmiHelper.printNewline(2);
 
                 sunmiHelper.endTransaction(new InnerResultCallbcak() {
