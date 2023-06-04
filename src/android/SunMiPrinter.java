@@ -213,6 +213,16 @@ public class SunMiPrinter extends CordovaPlugin {
 					sunmiHelper.printNewline(0);
 				}
 
+				if(first.has("notes")){
+					String notes = first.getString("notes");
+                    sunmiHelper.setAlignment(1);
+					sunmiHelper.printText("------------------------------");
+					sunmiHelper.printText("Notes:");
+					sunmiHelper.printTextWithFont(notes, 22, true);
+					sunmiHelper.printText("------------------------------");
+					sunmiHelper.printNewline(0);
+				}
+
 				JSONArray itemsArray = first.optJSONArray("items");
 				if (itemsArray != null) {
 
