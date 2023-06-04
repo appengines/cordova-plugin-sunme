@@ -217,9 +217,10 @@ public class SunMiPrinter extends CordovaPlugin {
 					String notes = first.getString("notes");
                     sunmiHelper.setAlignment(1);
 					sunmiHelper.printText("------------------------------");
+                    sunmiHelper.setAlignment(0);
 					sunmiHelper.printText("Notes:");
-					sunmiHelper.printTextWithFont(notes, 22, true);
-					sunmiHelper.printText("------------------------------");
+                    sunmiHelper.setAlignment(1);
+					sunmiHelper.printTextWithFont(notes, 24, false);
 					sunmiHelper.printNewline(0);
 				}
 
