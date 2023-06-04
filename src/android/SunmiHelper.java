@@ -302,6 +302,7 @@ public class SunmiHelper {
             throw new Exception(); //TODO handle exceptions.
         }
 
+        sunmiPrinterService.setAlignment(1, null);
         sunmiPrinterService.printBitmap(bitmap, null);
     }
 
