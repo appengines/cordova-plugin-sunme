@@ -181,6 +181,24 @@ public class SunMiPrinter extends CordovaPlugin {
 
 				JSONObject first = data.getJSONObject(0);
 
+				if(first.has("logo")){
+					String logo = first.getString("logo");
+					byte[] decodedString = Base64.decode(logo, Base64.DEFAULT);
+					Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+					Bitmap bLogo = BitmapHelper.getScaledDownBitmap(decodedByte, 368, true);
+					if(bLogo != null) {
+						for(int x = 0; x<bLogo.getWidth(); x++){
+							for(int y = 0; y<bLogo.getHeight(); y++){
+								if(bLogo.getPixel(x, y) == Color.TRANSPARENT){
+									bLogo.setPixel(x, y, Color.WHITE);
+								}
+							}
+						}
+						sunmiHelper.printBitmap(bLogo);
+						sunmiHelper.printNewline(1);
+					}
+				}
+
 				if(first.has("title")){
 					String title = first.getString("title");
                     sunmiHelper.setAlignment(1);
