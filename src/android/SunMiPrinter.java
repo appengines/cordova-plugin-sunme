@@ -213,6 +213,25 @@ public class SunMiPrinter extends CordovaPlugin {
 					sunmiHelper.printNewline(0);
 				}
 
+				JSONArray custinfoArray = first.optJSONArray("custinfo");
+				if (custinfoArray != null) {
+
+					//Totals lines
+	                for(int i = 0; i < custinfoArray.length(); i++){
+	                    JSONObject object = custinfoArray.getJSONObject(i);
+	                    String lString =  object.getString("l");
+	                    String rString =  object.optString("r","");
+	                    int width1 =  object.optInt("w1",3);
+	                    int width2 =  object.optInt("w2",7);
+	                    sunmiHelper.printRow2(ltring,rString,w1,w2);
+	                }
+					sunmiHelper.setAlignment(1);
+					sunmiHelper.printText("------------------------------");
+					sunmiHelper.setAlignment(0);
+	
+				}
+				sunmiHelper.printNewline(2);
+
 				if(first.has("notes")){
 					String notes = first.getString("notes");
                     sunmiHelper.setAlignment(1);
@@ -241,9 +260,9 @@ public class SunMiPrinter extends CordovaPlugin {
 	//                    String itemString =  object.optString("item","-");
 	                    String itemString =  object.getString("item");
 	                    String priceString =  object.optString("price","");
-	                    int width1 =  object.optInt("width1",1);
-	                    int width2 =  object.optInt("width2",7);
-	                    int width3 =  object.optInt("width3",2);
+	                    int width1 =  object.optInt("w1",1);
+	                    int width2 =  object.optInt("w2",7);
+	                    int width3 =  object.optInt("w3",2);
 	//					sunmiHelper.setAlignment(0);
 	//                    sunmiHelper.printText(printLeft);
 	//					sunmiHelper.setAlignment(2);
@@ -264,8 +283,8 @@ public class SunMiPrinter extends CordovaPlugin {
 	                    JSONObject object = totalsArray.getJSONObject(i);
 	                    String itemString =  object.getString("item");
 	                    String priceString =  object.optString("price","");
-	                    int width1 =  object.optInt("width1",7);
-	                    int width2 =  object.optInt("width2",2);
+	                    int width1 =  object.optInt("w1",7);
+	                    int width2 =  object.optInt("w2",2);
 	                    sunmiHelper.printRow2(itemString,priceString,width1,width2);
 	                }
 					sunmiHelper.setAlignment(1);
