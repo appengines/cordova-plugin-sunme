@@ -223,7 +223,7 @@ public class SunMiPrinter extends CordovaPlugin {
 	                    String rString =  object.optString("r","");
 	                    int width1 =  object.optInt("w1",3);
 	                    int width2 =  object.optInt("w2",7);
-	                    sunmiHelper.printRow2(ltring,rString,w1,w2);
+	                    sunmiHelper.printRow2(lString,rString,width1,width2);
 	                }
 					sunmiHelper.setAlignment(1);
 					sunmiHelper.printText("------------------------------");
