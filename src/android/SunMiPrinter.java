@@ -216,6 +216,10 @@ public class SunMiPrinter extends CordovaPlugin {
 				JSONArray custinfoArray = first.optJSONArray("custinfo");
 				if (custinfoArray != null) {
 
+					sunmiHelper.setAlignment(1);
+					sunmiHelper.printText("------------------------------");
+					sunmiHelper.setAlignment(0);
+
 					//Totals lines
 	                for(int i = 0; i < custinfoArray.length(); i++){
 	                    JSONObject object = custinfoArray.getJSONObject(i);
@@ -225,18 +229,23 @@ public class SunMiPrinter extends CordovaPlugin {
 	                    int width2 =  object.optInt("w2",7);
 	                    sunmiHelper.printRow2(lString,rString,width1,width2);
 	                }
-					sunmiHelper.setAlignment(1);
-					sunmiHelper.printText("------------------------------");
-					sunmiHelper.setAlignment(0);
 	
 				}
 				sunmiHelper.printNewline(2);
 
-				if(first.has("notes")){
-					String notes = first.getString("notes");
+				if(first.has("notes") || first.has("ordertype")){
                     sunmiHelper.setAlignment(1);
 					sunmiHelper.printText("------------------------------");
                     sunmiHelper.setAlignment(0);
+				}
+				if(first.has("ordertype")){
+					String ordertype = first.getString("ordertype");
+                    sunmiHelper.setAlignment(1);
+					sunmiHelper.printTextWithFont(ordertype, 44, true);
+					sunmiHelper.printNewline(0);
+				}
+				if(first.has("notes")){
+					String notes = first.getString("notes");
 					sunmiHelper.printText("Notes:");
                     sunmiHelper.setAlignment(1);
 					sunmiHelper.printTextWithFont(notes, 24, false);
@@ -261,7 +270,7 @@ public class SunMiPrinter extends CordovaPlugin {
 	                    String itemString =  object.getString("item");
 	                    String priceString =  object.optString("price","");
 	                    int width1 =  object.optInt("w1",2);
-	                    int width2 =  object.optInt("w2",7);
+	                    int width2 =  object.optInt("w2",9);
 	                    int width3 =  object.optInt("w3",3);
 	//					sunmiHelper.setAlignment(0);
 	//                    sunmiHelper.printText(printLeft);
