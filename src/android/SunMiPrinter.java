@@ -205,19 +205,20 @@ public class SunMiPrinter extends CordovaPlugin {
                     sunmiHelper.setAlignment(0);
 					sunmiHelper.printNewline(0);
 				}
-
-				if(first.has("title")){
-					String title = first.getString("title");
-                    sunmiHelper.setAlignment(1);
-					sunmiHelper.printTextWithFont(title, 32, true);
-					sunmiHelper.printNewline(0);
-				}
-
-				if(first.has("subtitle")){
-					String subtitle = first.getString("subtitle");
-                    sunmiHelper.setAlignment(1);
-					sunmiHelper.printTextWithFont(subtitle, 24, true);
-					sunmiHelper.printNewline(0);
+				else{
+					if(first.has("title")){
+						String title = first.getString("title");
+	                    sunmiHelper.setAlignment(1);
+						sunmiHelper.printTextWithFont(title, 32, true);
+						sunmiHelper.printNewline(0);
+					}
+	
+					if(first.has("subtitle")){
+						String subtitle = first.getString("subtitle");
+	                    sunmiHelper.setAlignment(1);
+						sunmiHelper.printTextWithFont(subtitle, 24, true);
+						sunmiHelper.printNewline(0);
+					}
 				}
 
 				JSONArray custinfoArray = first.optJSONArray("custinfo");
