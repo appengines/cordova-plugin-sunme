@@ -302,6 +302,14 @@ public class SunMiPrinter extends CordovaPlugin {
 					sunmiHelper.printText("------------------------------");
 					sunmiHelper.setAlignment(0);
 	
+					sunmiHelper.printNewline(1);
+				}
+				if(first.has("footer")){
+					String footer = first.getString("footer");
+                    sunmiHelper.setAlignment(1);
+					sunmiHelper.printText(footer);
+                    sunmiHelper.setAlignment(0);
+					sunmiHelper.printNewline(0);
 				}
 				sunmiHelper.printNewline(2);
 
