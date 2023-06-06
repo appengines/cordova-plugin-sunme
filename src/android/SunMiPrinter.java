@@ -198,6 +198,13 @@ public class SunMiPrinter extends CordovaPlugin {
 						sunmiHelper.printNewline(1);
 					}
 				}
+				if(first.has("header")){
+					String header = first.getString("header");
+                    sunmiHelper.setAlignment(1);
+					sunmiHelper.printTextWithFont(header, 24, true);
+                    sunmiHelper.setAlignment(0);
+					sunmiHelper.printNewline(0);
+				}
 
 				if(first.has("title")){
 					String title = first.getString("title");
