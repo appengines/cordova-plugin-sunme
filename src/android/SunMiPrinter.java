@@ -251,7 +251,7 @@ public class SunMiPrinter extends CordovaPlugin {
 					sunmiHelper.setAlignment(0);
 
 					//Currency header top right:
-					sunmiHelper.printRow("","","GBP",1,7,2);
+//					sunmiHelper.printRow("","","GBP",1,7,2);
 	
 					//Items ordered:
 	                for(int i = 0; i < itemsArray.length(); i++){
@@ -260,9 +260,9 @@ public class SunMiPrinter extends CordovaPlugin {
 	//                    String itemString =  object.optString("item","-");
 	                    String itemString =  object.getString("item");
 	                    String priceString =  object.optString("price","");
-	                    int width1 =  object.optInt("w1",1);
+	                    int width1 =  object.optInt("w1",2);
 	                    int width2 =  object.optInt("w2",7);
-	                    int width3 =  object.optInt("w3",2);
+	                    int width3 =  object.optInt("w3",3);
 	//					sunmiHelper.setAlignment(0);
 	//                    sunmiHelper.printText(printLeft);
 	//					sunmiHelper.setAlignment(2);
