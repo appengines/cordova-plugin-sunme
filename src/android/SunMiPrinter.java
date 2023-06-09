@@ -401,6 +401,48 @@ public class SunMiPrinter extends CordovaPlugin {
     		SunmiHelper.getInstance().deInitSunmiPrinterService(cordova.getActivity());
     		callbackContext.success("deinitialized");
             return true;
+        }else if(action.equals("printerStatusOk")){
+			SunmiHelper sunmiHelper = SunmiHelper.getInstance();
+    		SunmiHelper.getInstance().initSunmiPrinterService(cordova.getActivity());
+			int printStatus = Integer.MAX_VALUE;
+			printStatus = sunmiHelper.getPrinterStatus();
+			if (printStatus == SunmiHelper.STATUS_OK){
+    			callbackContext.success("ok");
+			}
+			else{
+    			String message = "";
+                            switch (printStatus){
+                                case SunmiHelper.STATUS_OK:
+                                    message = "OK");
+                                    return;
+                                case SunmiHelper.STATUS_UPDATE:
+                                    message = "printer found but still initializing";
+                                    break;
+                                case SunmiHelper.STATUS_EXCEPTION:
+                                    message = "printer hardware interface is abnormal and needs to be reprinted";
+                                    break;
+                                case SunmiHelper.OUT_OF_PAPER:
+                                    message = "printer is out of paper";
+                                    break;
+                                case SunmiHelper.OVERHEATING:
+                                    message = "printer is overheating";
+                                    break;
+                                case SunmiHelper.COVER_OPEN:
+                                    message = "printer's cover is not closed";
+                                    break;
+                                case SunmiHelper.NO_BLACK_MARK:
+                                    message = "not found black mark paper";
+                                    break;
+                                case SunmiHelper.PRINTER_NOT_EXISTS:
+                                    message = "printer does not exist";
+                                    break;
+                                default:
+                                    message = "unknown exception";
+                                    break;
+                            }
+				callbackContext.error(message);
+			}
+            return true;
     	}else {
             return false;
         }
