@@ -411,6 +411,7 @@ public class SunMiPrinter extends CordovaPlugin {
 			}
 			else{
     			String message = "";
+						try{
                             switch (printStatus){
                                 case SunmiHelper.STATUS_OK:
                                     message = "OK";
@@ -440,7 +441,11 @@ public class SunMiPrinter extends CordovaPlugin {
                                     message = "unknown exception";
                                     break;
                             }
-				callbackContext.error(message);
+							callbackContext.error(message);
+                        }catch (Exception statusExecption){
+							message = "unknown exception thrown";
+							callbackContext.error(message);
+                        }
 			}
             return true;
     	}else {
