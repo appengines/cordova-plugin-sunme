@@ -405,6 +405,7 @@ public class SunMiPrinter extends CordovaPlugin {
 			SunmiHelper sunmiHelper = SunmiHelper.getInstance();
     		SunmiHelper.getInstance().initSunmiPrinterService(cordova.getActivity());
 			int printStatus = Integer.MAX_VALUE;
+    		String message = "";
 			try{
 				printStatus = sunmiHelper.getPrinterStatus();
 			}catch (Exception statusExecption){
@@ -415,7 +416,6 @@ public class SunMiPrinter extends CordovaPlugin {
     			callbackContext.success("ok");
 			}
 			else{
-    			String message = "";
                             switch (printStatus){
                                 case SunmiHelper.STATUS_OK:
                                     message = "OK";
