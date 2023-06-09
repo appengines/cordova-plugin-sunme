@@ -405,13 +405,17 @@ public class SunMiPrinter extends CordovaPlugin {
 			SunmiHelper sunmiHelper = SunmiHelper.getInstance();
     		SunmiHelper.getInstance().initSunmiPrinterService(cordova.getActivity());
 			int printStatus = Integer.MAX_VALUE;
-			printStatus = sunmiHelper.getPrinterStatus();
+			try{
+				printStatus = sunmiHelper.getPrinterStatus();
+			}catch (Exception statusExecption){
+				message = "unknown exception thrown";
+				callbackContext.error(message);
+			}
 			if (printStatus == SunmiHelper.STATUS_OK){
     			callbackContext.success("ok");
 			}
 			else{
     			String message = "";
-						try{
                             switch (printStatus){
                                 case SunmiHelper.STATUS_OK:
                                     message = "OK";
@@ -442,10 +446,6 @@ public class SunMiPrinter extends CordovaPlugin {
                                     break;
                             }
 							callbackContext.error(message);
-                        }catch (Exception statusExecption){
-							message = "unknown exception thrown";
-							callbackContext.error(message);
-                        }
 			}
             return true;
     	}else {
