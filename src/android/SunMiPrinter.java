@@ -414,7 +414,7 @@ public class SunMiPrinter extends CordovaPlugin {
                             switch (printStatus){
                                 case SunmiHelper.STATUS_OK:
                                     message = "OK";
-                                    return;
+                                    break;
                                 case SunmiHelper.STATUS_UPDATE:
                                     message = "printer found but still initializing";
                                     break;
